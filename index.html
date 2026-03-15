@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Heim Bakeri – Nettannonser</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: #1a1008;
+      font-family: 'DM Sans', sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 40px;
+      padding: 48px 24px;
+      min-height: 100vh;
+    }
+
+    .label {
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      color: #6B5A48;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(10px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes steam {
+      0%   { transform: translateY(0)   scaleX(1);   opacity: 0.6; }
+      100% { transform: translateY(-20px) scaleX(1.5); opacity: 0;   }
+    }
+    @keyframes shimmer {
+      0%, 100% { opacity: 1; }
+      50%       { opacity: 0.75; }
+    }
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50%       { transform: scale(1.03); }
+    }
+
+    .a1 { animation: fadeUp 0.7s ease both; }
+    .a2 { animation: fadeUp 0.7s ease 0.15s both; }
+    .a3 { animation: fadeUp 0.7s ease 0.3s both; }
+    .a4 { animation: fadeUp 0.7s ease 0.45s both; }
+    .a5 { animation: fadeUp 0.7s ease 0.6s both; }
+
+    .banner-wide {
+      width: 728px;
+      height: 90px;
+      background: #2C1A0E;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 32px;
+      position: relative;
+      overflow: hidden;
+      border: 1px solid #3D2510;
+    }
+    .banner-wide::before {
+      content: '';
+      position: absolute;
+      left: 0; top: 0; bottom: 0;
+      width: 4px;
+      background: #C8A96A;
+      border-radius: 10px 0 0 10px;
+    }
+    .banner-wide::after {
+      content: '';
+      position: absolute;
+      right: -60px; top: -60px;
+      width: 180px; height: 180px;
+      border-radius: 50%;
+      background: #C8A96A;
+      opacity: 0.04;
+    }
+    .wide-left { display: flex; flex-direction: column; gap: 2px; }
+    .wide-eyebrow {
+      font-size: 10px;
+      letter-spacing: 0.14em;
+      color: #C8A96A;
+      font-weight: 500;
+      text-transform: uppercase;
+    }
+    .wide-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 26px;
+      color: #F5EDD8;
+      font-weight: 400;
+      line-height: 1;
+    }
+    .wide-sub {
+      font-size: 11px;
+      color: #8B6B4A;
+      letter-spacing: 0.04em;
+    }
+    .wide-right { display: flex; align-items: center; gap: 24px; }
+    .btn {
+      background: #C8A96A;
+      color: #2C1A0E;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 13px;
+      font-weight: 500;
+      padding: 10px 20px;
+      border-radius: 6px;
+      border: none;
+      cursor: pointer;
+      white-space: nowrap;
+      animation: shimmer 3s ease-in-out infinite;
+    }
+    .btn:hover { background: #D9BA80; }
+
+    .banner-square {
+      width: 300px;
+      height: 250px;
+      background: #F5EDD8;
+      border-radius: 14px;
+      padding: 28px 24px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      position: relative;
+      overflow: hidden;
+      border: 1px solid #E0CEB0;
+    }
+    .sq-circle1 {
+      position: absolute;
+      top: -40px; right: -40px;
+      width: 130px; height: 130px;
+      border-radius: 50%;
+      background: #E8D5B0;
+      opacity: 0.5;
+    }
+    .sq-circle2 {
+      position: absolute;
+      bottom: -30px; left: -30px;
+      width: 100px; height: 100px;
+      border-radius: 50%;
+      background: #D4B896;
+      opacity: 0.35;
+    }
+    .sq-eyebrow {
+      font-size: 9px;
+      letter-spacing: 0.14em;
+      color: #8B6B4A;
+      text-transform: uppercase;
+      font-weight: 500;
+      position: relative;
+    }
+    .sq-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 26px;
+      color: #2C1A0E;
+      line-height: 1.2;
+      font-weight: 400;
+      position: relative;
+      margin-top: 6px;
+    }
+    .sq-bottom { position: relative; }
+    .sq-sub {
+      font-size: 10px;
+      color: #8B6B4A;
+      margin-bottom: 12px;
+      line-height: 1.5;
+    }
+    .btn-dark {
+      background: #2C1A0E;
+      color: #F5EDD8;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 12px;
+      font-weight: 500;
+      padding: 9px 16px;
+      border-radius: 6px;
+      border: none;
+      cursor: pointer;
+      display: inline-block;
+      animation: pulse 3s ease-in-out infinite;
+    }
+    .btn-dark:hover { background: #3D2510; }
+
+    .banner-vert {
+      width: 160px;
+      height: 380px;
+      background: #2C1A0E;
+      border-radius: 12px;
+      padding: 24px 16px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: center;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      border: 1px solid #3D2510;
+    }
+    .vert-topbar {
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, #C8A96A, #F5EDD8, #C8A96A);
+      border-radius: 12px 12px 0 0;
+    }
+    .vert-eyebrow {
+      font-size: 9px;
+      letter-spacing: 0.14em;
+      color: #C8A96A;
+      text-transform: uppercase;
+      margin-bottom: 6px;
+    }
+    .vert-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 22px;
+      color: #F5EDD8;
+      font-weight: 400;
+      line-height: 1.2;
+    }
+    .vert-sub {
+      font-size: 10px;
+      color: #8B6B4A;
+      line-height: 1.6;
+      margin-bottom: 10px;
+    }
+    .btn-sm {
+      background: #C8A96A;
+      color: #2C1A0E;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 11px;
+      font-weight: 500;
+      padding: 8px 14px;
+      border-radius: 6px;
+      border: none;
+      cursor: pointer;
+      animation: shimmer 3s ease-in-out infinite;
+    }
+    .btn-sm:hover { background: #D9BA80; }
+
+    .row { display: flex; align-items: flex-start; gap: 32px; }
+  </style>
+</head>
+<body>
+
+  <div>
+    <p class="label">Leaderboard-banner — 728×90</p>
+    <div class="banner-wide">
+      <div class="wide-left">
+        <span class="wide-eyebrow a1">Oslo · Åpent fra kl 07</span>
+        <span class="wide-title a2">Heim Bakeri</span>
+        <span class="wide-sub a3">Nybakt og nytraktet – hver dag</span>
+      </div>
+      <div class="wide-right">
+        <div class="a3">
+          <svg width="52" height="56" viewBox="0 0 52 56" fill="none">
+            <ellipse cx="26" cy="48" rx="18" ry="6" fill="#4A2C14"/>
+            <rect x="10" y="28" width="28" height="20" rx="5" fill="#5C3820"/>
+            <ellipse cx="26" cy="28" rx="14" ry="5" fill="#6B4428"/>
+            <path d="M38 32 Q46 32 46 38 Q46 44 38 44" stroke="#5C3820" stroke-width="4" fill="none" stroke-linecap="round"/>
+            <path d="M18 25 Q20 18 18 12" stroke="#C8A96A" stroke-width="1.5" fill="none" stroke-linecap="round" opacity="0.4"/>
+            <path d="M26 23 Q28 15 26 8" stroke="#C8A96A" stroke-width="1.5" fill="none" stroke-linecap="round" opacity="0.4"/>
+            <path d="M34 25 Q36 18 34 12" stroke="#C8A96A" stroke-width="1.5" fill="none" stroke-linecap="round" opacity="0.4"/>
+          </svg>
+        </div>
+        <button class="btn a4">Besøk oss →</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div>
+      <p class="label">Kvadratisk banner — 300×250</p>
+      <div class="banner-square">
+        <div class="sq-circle1"></div>
+        <div class="sq-circle2"></div>
+        <div>
+          <p class="sq-eyebrow a1">Heim Bakeri · Oslo</p>
+          <h2 class="sq-title a2">Ferskt fra<br>ovnen,<br>hver dag</h2>
+        </div>
+        <div class="sq-bottom">
+          <p class="sq-sub a3">Håndlaget brød & kaffe<br>Sentralt i Oslo · Fra kl 07</p>
+          <button class="btn-dark a4">Se menyen →</button>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <p class="label">Vertikal banner — 160×380</p>
+      <div class="banner-vert">
+        <div class="vert-topbar"></div>
+        <div class="a1">
+          <p class="vert-eyebrow">Oslo</p>
+          <h2 class="vert-title">Heim<br>Bakeri</h2>
+        </div>
+        <div class="a2">
+          <svg width="56" height="58" viewBox="0 0 56 58" fill="none">
+            <ellipse cx="28" cy="48" rx="18" ry="7" fill="#4A2C14"/>
+            <rect x="12" y="30" width="28" height="22" rx="5" fill="#5C3820"/>
+            <ellipse cx="28" cy="30" rx="14" ry="5.5" fill="#6B4428"/>
+            <path d="M40 34 Q48 34 48 40 Q48 46 40 46" stroke="#5C3820" stroke-width="4" fill="none" stroke-linecap="round"/>
+            <path d="M20 27 Q22 19 20 12" stroke="#C8A96A" stroke-width="1.5" fill="none" stroke-linecap="round" opacity="0.4"/>
+            <path d="M28 25 Q30 16 28 8" stroke="#C8A96A" stroke-width="1.5" fill="none" stroke-linecap="round" opacity="0.4"/>
+            <path d="M36 27 Q38 19 36 12" stroke="#C8A96A" stroke-width="1.5" fill="none" stroke-linecap="round" opacity="0.4"/>
+          </svg>
+        </div>
+        <div class="a3">
+          <p class="vert-sub">Nybakt brød<br>& god kaffe<br>hver dag</p>
+          <button class="btn-sm">Besøk oss →</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>
