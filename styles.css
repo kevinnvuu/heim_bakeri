@@ -1,0 +1,513 @@
+/* ─────────────────────────────────────────
+   RESET
+   Fjerner standard margin, padding og
+   setter box-sizing til border-box på alt.
+───────────────────────────────────────── */
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+  
+  
+  /* ─────────────────────────────────────────
+     BASE
+     Grunnleggende stiler for siden.
+     Mørk bakgrunn, sentrert innhold.
+  ───────────────────────────────────────── */
+  body {
+    background: #9e7a5c;
+    font-family: 'DM Sans', sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 40px;
+    padding: 48px 24px;
+    min-height: 100vh;
+  }
+  
+  /* Liten etikett over hver komponent */
+  .label {
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    color: #6B5A48;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+  
+  /* Wrapper for komponenter side om side */
+  .row {
+    display: flex;
+    align-items: flex-start;
+    gap: 32px;
+  }
+  
+  
+  /* ─────────────────────────────────────────
+     ANIMASJONER
+     Gjenbrukbare keyframes brukt av
+     flere komponenter på siden.
+  ───────────────────────────────────────── */
+  
+  /* Fade og gli opp – brukes av .a1-.a5 */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(10px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  
+  /* Pulserende gjennomsiktighet – brukes på knapper */
+  @keyframes shimmer {
+    0%, 100% { opacity: 1; }
+    50%       { opacity: 0.75; }
+  }
+  
+  /* Liten puls-skalering – brukes på btn-dark */
+  @keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50%       { transform: scale(1.03); }
+  }
+  
+  /* Hero-spesifikke animasjoner */
+  @keyframes heroFadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  
+  /* Linje som vokser ut fra venstre */
+  @keyframes heroLineGrow {
+    from { width: 0; }
+    to   { width: 64px; }
+  }
+  
+  /* Bakgrunnsirkler som zoomer inn */
+  @keyframes heroBgScale {
+    from { transform: scale(1.06); }
+    to   { transform: scale(1); }
+  }
+  
+  /* Damp som stiger opp og forsvinner */
+  @keyframes heroSteam {
+    0%   { transform: translateY(0) scaleX(1); opacity: 0.7; }
+    100% { transform: translateY(-24px) scaleX(1.5); opacity: 0; }
+  }
+  
+  
+  /* ─────────────────────────────────────────
+     FADE-INN KLASSER
+     Brukes på HTML-elementer for å animere
+     dem inn med ulik forsinkelse.
+  ───────────────────────────────────────── */
+  .a1 { animation: fadeUp 0.7s ease both; }
+  .a2 { animation: fadeUp 0.7s ease 0.15s both; }
+  .a3 { animation: fadeUp 0.7s ease 0.3s both; }
+  .a4 { animation: fadeUp 0.7s ease 0.45s both; }
+  .a5 { animation: fadeUp 0.7s ease 0.6s both; }
+  
+  
+  /* ─────────────────────────────────────────
+     KNAPPER
+     Tre varianter: lys (.btn), mørk (.btn-dark)
+     og liten (.btn-sm).
+  ───────────────────────────────────────── */
+  
+  /* Lys gull-knapp – brukes i leaderboard */
+  .btn {
+    background: #c8a96a;
+    color: #2C1A0E;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    padding: 10px 20px;
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
+    white-space: nowrap;
+    animation: shimmer 3s ease-in-out infinite;
+  }
+  .btn:hover { background: #D9BA80; }
+  
+  /* Mørk knapp – brukes i kvadratisk banner */
+  .btn-dark {
+    background: #2C1A0E;
+    color: #F5EDD8;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 12px;
+    font-weight: 500;
+    padding: 9px 16px;
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
+    display: inline-block;
+    animation: pulse 3s ease-in-out infinite;
+  }
+  .btn-dark:hover { background: #3D2510; }
+  
+  /* Liten gull-knapp – brukes i vertikal banner */
+  .btn-sm {
+    background: #C8A96A;
+    color: #2C1A0E;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 11px;
+    font-weight: 500;
+    padding: 8px 14px;
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
+    animation: shimmer 3s ease-in-out infinite;
+  }
+  .btn-sm:hover { background: #D9BA80; }
+  
+  
+  /* ─────────────────────────────────────────
+     HERO-SEKSJON
+     Stort animert banner øverst på siden.
+     Inneholder logo, tagline, kaffekopp
+     og en CTA-knapp.
+  ───────────────────────────────────────── */
+  .hero {
+    width: 580px;
+    height: 320px;
+    background: rgb(80, 57, 29);
+    border-radius: 14px;
+    overflow: hidden;
+    position: relative;
+    display: flex;
+    align-items: center;
+    padding: 0 52px;
+    border: 1px solid #3D2510;
+  }
+  
+  /* Stor dekorativ sirkel bak kaffekoppen */
+  .hero-bg-circle {
+    position: absolute;
+    right: -60px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 320px;
+    height: 320px;
+    border-radius: 50%;
+    border: 1px solid #3D2010;
+    animation: heroBgScale 1.4s cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
+  
+  /* Liten dekorativ sirkel bak kaffekoppen */
+  .hero-bg-circle-2 {
+    position: absolute;
+    right: -20px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 220px;
+    height: 220px;
+    border-radius: 50%;
+    border: 1px solid #4A2810;
+    animation: heroBgScale 1.6s cubic-bezier(0.22, 1, 0.36, 1) 0.1s both;
+  }
+  
+  /* Venstre kolonne i hero */
+  .hero-left {
+    flex: 1;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  /* Liten tekst øverst */
+  .hero-eyebrow {
+    font-size: 10px;
+    letter-spacing: 0.16em;
+    color: #C8A96A;
+    text-transform: uppercase;
+    font-weight: 500;
+    opacity: 0;
+    animation: heroFadeUp 0.6s ease 0.2s forwards;
+    margin-bottom: 12px;
+  }
+  
+  /* Dekorativ gull-linje som animerer inn */
+  .hero-line {
+    height: 1px;
+    background: #C8A96A;
+    width: 0;
+    animation: heroLineGrow 0.7s cubic-bezier(0.22, 1, 0.36, 1) 0.4s forwards;
+    margin-bottom: 16px;
+  }
+  
+  /* Stort logonavn */
+  .hero-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 42px;
+    color: #F5EDD8;
+    font-weight: 400;
+    line-height: 1.15;
+    opacity: 0;
+    animation: heroFadeUp 0.7s ease 0.5s forwards;
+    margin-bottom: 10px;
+  }
+  
+  /* "Bakeri" vises i kursiv gull */
+  .hero-title em {
+    font-style: italic;
+    color: #C8A96A;
+  }
+  
+  /* Undertekst */
+  .hero-sub {
+    font-size: 13px;
+    color: #c4b3a7;
+    line-height: 1.7;
+    opacity: 0;
+    animation: heroFadeUp 0.7s ease 0.7s forwards;
+    margin-bottom: 24px;
+  }
+  
+  /* Outline-knapp med hover-effekt */
+  .hero-btn {
+    background: transparent;
+    color: #C8A96A;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 12px;
+    font-weight: 500;
+    padding: 10px 22px;
+    border-radius: 6px;
+    border: 1px solid #C8A96A;
+    cursor: pointer;
+    width: fit-content;
+    opacity: 0;
+    animation: heroFadeUp 0.7s ease 0.9s forwards;
+    transition: background 0.2s, color 0.2s;
+  }
+  .hero-btn:hover {
+    background: #C8A96A;
+    color: #2C1A0E;
+  }
+  
+  /* Høyre kolonne: kaffekopp */
+  .hero-right {
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    opacity: 0;
+    animation: heroFadeUp 0.8s ease 0.6s forwards;
+    margin-left: 40px;
+  }
+  
+  /* Wrapper for dampstripene */
+  .hero-steam {
+    display: flex;
+    gap: 7px;
+    margin-bottom: 4px;
+    align-items: flex-end;
+  }
+  
+  /* Enkelt dampstripe-element */
+  .hero-steam .s {
+    width: 5px;
+    border-radius: 3px;
+    background: #C8A96A;
+    transform-origin: bottom center;
+  }
+  
+  /* Tre dampstriper med ulik høyde og forsinkelse */
+  .hero-steam .s1 { height: 16px; animation: heroSteam 1.8s ease-in infinite 1.2s; }
+  .hero-steam .s2 { height: 22px; animation: heroSteam 2.2s ease-in infinite 1.5s; }
+  .hero-steam .s3 { height: 14px; animation: heroSteam 1.6s ease-in infinite 1.8s; }
+  
+  
+  /* ─────────────────────────────────────────
+     LEADERBOARD-BANNER (728×90)
+     Bredt annonseformat med logo til venstre
+     og kaffekopp + knapp til høyre.
+  ───────────────────────────────────────── */
+  .banner-wide {
+    width: 728px;
+    height: 90px;
+    background: #2C1A0E;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 32px;
+    position: relative;
+    overflow: hidden;
+    border: 1px solid #3D2510;
+  }
+  
+  /* Gull-stripe langs venstre kant */
+  .banner-wide::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 4px;
+    background: #C8A96A;
+    border-radius: 10px 0 0 10px;
+  }
+  
+  /* Subtil dekorativ sirkel i høyre hjørne */
+  .banner-wide::after {
+    content: '';
+    position: absolute;
+    right: -60px; top: -60px;
+    width: 180px; height: 180px;
+    border-radius: 50%;
+    background: #C8A96A;
+    opacity: 0.04;
+  }
+  
+  .wide-left {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+  
+  .wide-eyebrow {
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    color: #C8A96A;
+    font-weight: 500;
+    text-transform: uppercase;
+  }
+  
+  .wide-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 26px;
+    color: #F5EDD8;
+    font-weight: 400;
+    line-height: 1;
+  }
+  
+  .wide-sub {
+    font-size: 11px;
+    color: #8B6B4A;
+    letter-spacing: 0.04em;
+  }
+  
+  .wide-right {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+  }
+  
+  
+  /* ─────────────────────────────────────────
+     KVADRATISK BANNER (300×250)
+     Lyst beige banner med dekorative sirkler
+     og mørk CTA-knapp.
+  ───────────────────────────────────────── */
+  .banner-square {
+    width: 300px;
+    height: 250px;
+    background: #F5EDD8;
+    border-radius: 14px;
+    padding: 28px 24px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: relative;
+    overflow: hidden;
+    border: 1px solid #E0CEB0;
+  }
+  
+  /* Dekorativ sirkel øverst til høyre */
+  .sq-circle1 {
+    position: absolute;
+    top: -40px; right: -40px;
+    width: 130px; height: 130px;
+    border-radius: 50%;
+    background: #E8D5B0;
+    opacity: 0.5;
+  }
+  
+  /* Dekorativ sirkel nederst til venstre */
+  .sq-circle2 {
+    position: absolute;
+    bottom: -30px; left: -30px;
+    width: 100px; height: 100px;
+    border-radius: 50%;
+    background: #D4B896;
+    opacity: 0.35;
+  }
+  
+  .sq-eyebrow {
+    font-size: 9px;
+    letter-spacing: 0.14em;
+    color: #8B6B4A;
+    text-transform: uppercase;
+    font-weight: 500;
+    position: relative;
+  }
+  
+  .sq-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 26px;
+    color: #2C1A0E;
+    line-height: 1.2;
+    font-weight: 400;
+    position: relative;
+    margin-top: 6px;
+  }
+  
+  /* Wrapper for undertekst og knapp */
+  .sq-bottom { position: relative; }
+  
+  .sq-sub {
+    font-size: 10px;
+    color: #8B6B4A;
+    margin-bottom: 12px;
+    line-height: 1.5;
+  }
+  
+  
+  /* ─────────────────────────────────────────
+     VERTIKAL BANNER (160×380)
+     Smalt mørkt banner (skyscraper-format)
+     med gull-stripe øverst og kaffekopp.
+  ───────────────────────────────────────── */
+  .banner-vert {
+    width: 160px;
+    height: 380px;
+    background: #2C1A0E;
+    border-radius: 12px;
+    padding: 24px 16px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    border: 1px solid #3D2510;
+  }
+  
+  /* Gradient-stripe langs toppen */
+  .vert-topbar {
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, #C8A96A, #F5EDD8, #C8A96A);
+    border-radius: 12px 12px 0 0;
+  }
+  
+  .vert-eyebrow {
+    font-size: 9px;
+    letter-spacing: 0.14em;
+    color: #C8A96A;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+  
+  .vert-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    color: #F5EDD8;
+    font-weight: 400;
+    line-height: 1.2;
+  }
+  
+  .vert-sub {
+    font-size: 10px;
+    color: #8B6B4A;
+    line-height: 1.6;
+    margin-bottom: 10px;
+  }
+  
