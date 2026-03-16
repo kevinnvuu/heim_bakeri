@@ -15,6 +15,14 @@
      Grunnleggende stiler for siden.
      Mørk bakgrunn, sentrert innhold.
   ───────────────────────────────────────── */
+
+  .project-title{
+    text-align: center;
+    font-family: 'Playfair Display', serif;
+    margin: 40px 0;
+    color: rgb(238, 227, 227);
+  }
+  
   body {
     background: #9e7a5c;
     font-family: 'DM Sans', sans-serif;
@@ -30,7 +38,7 @@
   .label {
     font-size: 11px;
     letter-spacing: 0.1em;
-    color: #6B5A48;
+    color: #c2b8ac;
     text-transform: uppercase;
     margin-bottom: 8px;
   }
@@ -562,7 +570,7 @@
   }
   
   .flip-front-eyebrow {
-    font-size: 9px;
+    font-size: 12px;
     letter-spacing: 0.14em;
     color: #C8A96A;
     text-transform: uppercase;
@@ -626,3 +634,13 @@
     flex-wrap: wrap;
     justify-content: center;
   }
+
+  .flip-brand {
+    font-size: 16px;
+    letter-spacing: 0.12em;
+    color: #d4be93;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+
+  
