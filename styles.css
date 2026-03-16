@@ -511,3 +511,118 @@
     margin-bottom: 10px;
   }
   
+  /* ─────────────────────────────────────────
+   FLIP-KORT
+   Kort som snur seg rundt på hover og viser
+   informasjon på baksiden.
+───────────────────────────────────────── */
+
+/* Perspektiv-wrapper – nødvendig for 3D-effekt */
+.flip-card {
+    width: 200px;
+    height: 260px;
+    perspective: 1000px;
+    cursor: pointer;
+  }
+  
+  /* Selve kortet som roterer */
+  .flip-card-inner {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    transform-style: preserve-3d;
+    transition: transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  
+  /* Roter kortet 180 grader på hover */
+  .flip-card:hover .flip-card-inner {
+    transform: rotateY(180deg);
+  }
+  
+  /* Felles stiler for for- og bakside */
+  .flip-front,
+  .flip-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 14px;
+    backface-visibility: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+    text-align: center;
+    border: 1px solid #3D2510;
+  }
+  
+  /* Forside – mørk bakgrunn */
+  .flip-front {
+    background: #2C1A0E;
+  }
+  
+  .flip-front-eyebrow {
+    font-size: 9px;
+    letter-spacing: 0.14em;
+    color: #C8A96A;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+  }
+  
+  .flip-front-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    color: #F5EDD8;
+    font-weight: 400;
+    line-height: 1.3;
+    margin-bottom: 16px;
+  }
+  
+  .flip-front-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    border: 1px solid #C8A96A;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #C8A96A;
+    font-size: 20px;
+  }
+  
+  /* Bakside – gull bakgrunn, rotert 180 grader */
+  .flip-back {
+    background: #C8A96A;
+    transform: rotateY(180deg);
+    gap: 10px;
+  }
+  
+  .flip-back-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 18px;
+    color: #2C1A0E;
+    font-weight: 400;
+    line-height: 1.3;
+  }
+  
+  .flip-back-text {
+    font-size: 11px;
+    color: #5C3810;
+    line-height: 1.7;
+  }
+  
+  .flip-back-hint {
+    font-size: 9px;
+    letter-spacing: 0.1em;
+    color: #8B5E2A;
+    text-transform: uppercase;
+    margin-top: 6px;
+  }
+  
+  /* Wrapper for å vise kortene side om side */
+  .flip-row {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
